@@ -88,44 +88,44 @@ async def process_page_with_context(context, url, environment, loggers: dict[str
 
 async def main(sitemap_file):
     async with async_playwright() as p:
-            browser = await p.chromium.launch(
-                headless=True,
-                args=[
-                    '--disable-http2',
-                    '--disable-blink-features=AutomationControlled',
-                    '--disable-infobars',
-                    '--window-size=1920,1080',
-                    '--start-maximized',
-                    '--disable-features=IsolateOrigins,site-per-process', # Disable site isolation
-                    '--disable-web-security',  # Disable CORS and other security features
-                    '--disable-site-isolation-trials',
-                    '--no-sandbox',
-                    '--ignore-certificate-errors',
-                    '--ignore-certificate-errors-spki-list',
-                    '--enable-features=NetworkService,NetworkServiceInProcess'
-                ]
-            )
-            
-            # Default user agent and headers for both contexts
-            context_options = {
-                'user_agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-                'viewport': {'width': 1920, 'height': 1080},
-                'extra_http_headers': {
-                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-                    'Accept-Language': 'en-US,en;q=0.5',
-                    'Accept-Encoding': 'gzip, deflate, br',
-                    'Connection': 'keep-alive',
-                    'Upgrade-Insecure-Requests': '1',
-                    'Sec-Ch-Ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
-                    'Sec-Ch-Ua-Platform': '"macOS"',
-                    'Sec-Fetch-Dest': 'document',
-                    'Sec-Fetch-Mode': 'navigate',
-                    'Sec-Fetch-Site': 'none',
-                    'Sec-Fetch-User': '?1'
-                },
-                'bypass_csp': True,  # Bypass Content Security Policy
-                'ignore_https_errors': True  # Ignore HTTPS errors
-            }
+        browser = await p.chromium.launch(
+            headless=True,
+            args=[
+                '--disable-http2',
+                '--disable-blink-features=AutomationControlled',
+                '--disable-infobars',
+                '--window-size=1920,1080',
+                '--start-maximized',
+                '--disable-features=IsolateOrigins,site-per-process', # Disable site isolation
+                '--disable-web-security',  # Disable CORS and other security features
+                '--disable-site-isolation-trials',
+                '--no-sandbox',
+                '--ignore-certificate-errors',
+                '--ignore-certificate-errors-spki-list',
+                '--enable-features=NetworkService,NetworkServiceInProcess'
+            ]
+        )
+        
+        # Default user agent and headers for both contexts
+        context_options = {
+            'user_agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+            'viewport': {'width': 1920, 'height': 1080},
+            'extra_http_headers': {
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.5',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Connection': 'keep-alive',
+                'Upgrade-Insecure-Requests': '1',
+                'Sec-Ch-Ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+                'Sec-Ch-Ua-Platform': '"macOS"',
+                'Sec-Fetch-Dest': 'document',
+                'Sec-Fetch-Mode': 'navigate',
+                'Sec-Fetch-Site': 'none',
+                'Sec-Fetch-User': '?1'
+            },
+            'bypass_csp': True,  # Bypass Content Security Policy
+            'ignore_https_errors': True  # Ignore HTTPS errors
+        }
             
         # Create two persistent contexts - one for control and one for experimental
         control_context = await browser.new_context(**context_options)

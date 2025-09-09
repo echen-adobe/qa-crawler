@@ -89,7 +89,7 @@ async def process_page_with_context(context, url, environment, loggers: dict[str
 async def main(sitemap_file):
     async with async_playwright() as p:
         browser = await p.chromium.launch(
-            headless=False,  # Run in headless mode
+            headless=True,
             args=[
                 '--disable-blink-features=AutomationControlled',
                 '--disable-infobars',

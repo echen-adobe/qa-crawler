@@ -1,0 +1,102 @@
+{
+    "express_create_banner_event.png": {
+        "diff": 0,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": false,
+        "experimental_cropped": true
+    },
+    "express_create_avatar.png": {
+        "diff": 0,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": false,
+        "experimental_cropped": false
+    },
+    "express_create_banner_graduation.png": {
+        "diff": 0,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": false,
+        "experimental_cropped": false
+    },
+    "express_create_banner_graphic.png": {
+        "diff": 1,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": false,
+        "experimental_cropped": true
+    },
+    "express_create_banner_website.png": {
+        "diff": 0,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": false,
+        "experimental_cropped": false
+    },
+    "express_create_banner_ad.png": {
+        "diff": 0,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": true,
+        "experimental_cropped": false
+    },
+    "express_ambassadors_list.png": {
+        "diff": 0,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": false,
+        "experimental_cropped": false
+    },
+    "express_create_banner_twitch_video-player.png": {
+        "diff": 1,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": false,
+        "experimental_cropped": true
+    },
+    "express_create_brochure_travel.png": {
+        "diff": 0,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": false,
+        "experimental_cropped": true
+    },
+    "express_create_banner_vertical.png": {
+        "diff": 0,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": false,
+        "experimental_cropped": false
+    },
+    "express_create_banner_vinyl.png": {
+        "diff": 0,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": false,
+        "experimental_cropped": false
+    },
+    "express_create_banner_youtube-channel-art_game.png": {
+        "diff": 0,
+        "diff_path": "",
+        "has_significant_differences": false,
+        "hamming_threshold_used": 2,
+        "control_cropped": false,
+        "experimental_cropped": true
+    },
+    "metrics": {
+        "0": 10,
+        "1": 2
+    }
+}

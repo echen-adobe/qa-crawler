@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
 from playwright.async_api import async_playwright
 from loggers.screenshot_logger import ScreenshotLogger
 from loggers.source_logger import SourceLogger
@@ -87,12 +88,22 @@ async def process_page_with_context(context, url, environment, loggers: dict[str
         for logger in loggers.values():
             await logger.init_on_page(page, url)
         
-        await page.goto(url)
+        # Append or force martech=off to reduce third-party marketing scripts
+        try:
+            parsed = urlparse(url)
+            query_items = dict(parse_qsl(parsed.query, keep_blank_values=True))
+            query_items['martech'] = 'off'
+            new_query = urlencode(query_items, doseq=True)
+            nav_url = urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, new_query, parsed.fragment))
+        except Exception:
+            nav_url = url + ("&martech=off" if ("?" in url) else "?martech=off")
+
+        await page.goto(nav_url, wait_until='domcontentloaded', timeout=60000)
         await asyncio.sleep(random.randint(1, 5))
         # Add a small delay to allow initial page load
        
         
-        await page.wait_for_load_state('networkidle', timeout=60000)
+        await page.wait_for_selector('body', timeout=15000)
         #await page.wait_for_load_state("load")
         # Log data for this page with all loggers
         for logger in loggers.values():
@@ -145,7 +156,8 @@ async def main(sitemap_file):
                 'Sec-Fetch-User': '?1'
             },
             'bypass_csp': True,  # Bypass Content Security Policy
-            'ignore_https_errors': True  # Ignore HTTPS errors
+            'ignore_https_errors': True,  # Ignore HTTPS errors
+            'service_workers': 'block'
         }
             
         # Create two persistent contexts - one for control and one for experimental

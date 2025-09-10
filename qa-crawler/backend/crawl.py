@@ -1,7 +1,9 @@
 # twitter_crawler.py
 import asyncio, json, os, time, argparse
+import re
 from pathlib import Path
 from dotenv import load_dotenv
+from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright
 from loggers.screenshot_logger import ScreenshotLogger
 from loggers.source_logger import SourceLogger
@@ -18,30 +20,49 @@ async def load_config(sitemap_file):
         config = json.load(f)
     return config
 
-async def get_sitemap(page, sitemap_url):
-    await page.goto(sitemap_url)
-    await asyncio.sleep(10)
-    page_content = await page.content()
-    urls = []
-    for line in page_content.split('\n'):
-        if 'href="' in line:
-            start = line.find('href="') + 6
-            end = line.find('"', start)
-            url = line[start:end]
-            if url.startswith("https://www.adobe.com/express/"):
-                urls.append(url)
-    return urls
+async def fetch_sitemap_urls(context, sitemap_url, timeout_ms: int = 60000):
+    try:
+        response = await context.request.get(sitemap_url, timeout=timeout_ms)
+        if not response.ok:
+            raise RuntimeError(f"Sitemap request failed with status {response.status}")
+        text = await response.text()
 
-async def get_urls(browser, sitemap_file):
+        # Primary: XML parse via BeautifulSoup
+        urls: list[str] = []
+        try:
+            soup = BeautifulSoup(text, 'xml')
+            for loc in soup.find_all('loc'):
+                loc_text = (loc.text or '').strip()
+                if loc_text.startswith("https://www.adobe.com/express/"):
+                    urls.append(loc_text)
+        except Exception:
+            urls = []
+
+        # Fallback: regex parse of <loc> tags
+        if not urls:
+            urls = [m.strip() for m in re.findall(r"<loc>\s*(.*?)\s*</loc>", text, flags=re.IGNORECASE)]
+            urls = [u for u in urls if u.startswith("https://www.adobe.com/express/")]
+
+        # Deduplicate while preserving order
+        seen = set()
+        deduped = []
+        for u in urls:
+            if u not in seen:
+                seen.add(u)
+                deduped.append(u)
+        return deduped
+    except Exception as e:
+        print(f"Failed to fetch sitemap {sitemap_url}: {e}")
+        return []
+
+async def get_urls(context, sitemap_file):
     config = await load_config(sitemap_file)
     urls = config['urls']
     control_urls = []
     experimental_urls = []
     if len(config['urls']) == 0:
-        # If urls array is empty, fetch from sitemap
-        page = await browser.new_page()
-        urls = await get_sitemap(page, config['sitemap_url'])
-        await page.close()
+        # If urls array is empty, fetch from sitemap via request API to avoid navigation timeouts
+        urls = await fetch_sitemap_urls(context, config['sitemap_url'])
     return await get_urls_for_environment(urls, config['control_branch_host']), await get_urls_for_environment(urls, config['experimental_branch_host'])
 
 async def get_urls_for_environment(urls, environment):
@@ -71,7 +92,7 @@ async def process_page_with_context(context, url, environment, loggers: dict[str
         # Add a small delay to allow initial page load
        
         
-        await page.wait_for_load_state('networkidle', timeout=45000)
+        await page.wait_for_load_state('networkidle', timeout=60000)
         #await page.wait_for_load_state("load")
         # Log data for this page with all loggers
         for logger in loggers.values():
@@ -131,7 +152,7 @@ async def main(sitemap_file):
         control_context = await browser.new_context(**context_options)
         experimental_context = await browser.new_context(**context_options)
         
-        control_urls, experimental_urls = await get_urls(browser, sitemap_file)
+        control_urls, experimental_urls = await get_urls(control_context, sitemap_file)
         limit = -1
         batch_size = 10
         

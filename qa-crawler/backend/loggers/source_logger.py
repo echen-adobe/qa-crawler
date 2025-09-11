@@ -165,25 +165,31 @@ class SourceLogger(Logger):
             for section in section_elements:
                 direct_children = section.find_all(recursive=False)
                 for element in direct_children:
-                    class_names = element.get('class', [])
-                    if class_names:
-                        # Sort class names for consistent hashing
-                        sorted_class_names = sorted(class_names)
-                        
-                        # Compute hash
+                    def add_block_entry(classes: list[str]):
+                        if not classes:
+                            return
+                        sorted_class_names = sorted(classes)
                         class_str = ' '.join(sorted_class_names)
                         element_hash = hashlib.sha256(class_str.encode()).hexdigest()
-                        
-                        # Initialize block map entry if it doesn't exist
                         if element_hash not in self.block_map:
                             self.block_map[element_hash] = {
-                                "class_names": class_names,
+                                "class_names": classes,
                                 "urls": []
                             }
-                        
-                        # Add URL if not already present
                         if url not in self.block_map[element_hash]["urls"]:
                             self.block_map[element_hash]["urls"].append(url)
+
+                    class_names = element.get('class', [])
+                    if class_names:
+                        # Always add the element's own classes
+                        add_block_entry(class_names)
+
+                        # If any class ends with '-wrapper', also add immediate child div class names
+                        if any(cls.endswith('-wrapper') for cls in class_names):
+                            child_divs = element.find_all('div', recursive=False)
+                            for child in child_divs:
+                                child_classes = child.get('class', [])
+                                add_block_entry(child_classes)
                         
         except FileNotFoundError:
             print(f"Snapshot file not found: {snapshot_path}")

@@ -1,0 +1,56 @@
+---
+description: |
+  Use the block-map search tool when the user asks about blocks, variants,
+  or block map searches. Applies to chat or Cmd+K queries that intend to
+  locate blocks/variants or URLs in the block_map.json (e.g. "find a block",
+  "which variant", "search the block map").
+globs:
+alwaysApply: false
+---
+
+## Block/Variant/Block Map Search Assistant
+
+- When a query mentions any of: "block", "variant"/"variants", "block map",
+  "block_map", or "class combinations" and the intent is to find blocks,
+  variants, or URLs in the block map, run the existing search tool.
+
+- Execute using the project's venv python3 and ensure the src is on PYTHONPATH.
+
+### Command template
+ 
+Run this command, substituting <query> with the user's natural-language query
+(keep quotes):
+
+```
+./search.sh <query>
+```
+
+Common options:
+- Add `--date YYYY-MM-DD` to search a specific output date folder.
+- Add `--path /abs/path/to/block_map.json` to override path resolution.
+- Add `--limit N` to limit exact URL results.
+
+### Examples
+
+<example>
+User: "Search block map for product-card variants"
+
+Run:
+PYTHONPATH=/Users/all42238/Documents/GitHub/qa-crawler/qa-crawler/src \
+/Users/all42238/Documents/GitHub/qa-crawler/qa-crawler/venv/bin/python3 \
+  -m qa_crawler.cli.search "product-card variants"
+
+Return the tool's stdout to the user.
+</example>
+
+<example>
+User: "Which blocks match: btn primary large?"
+
+Run:
+PYTHONPATH=/Users/all42238/Documents/GitHub/qa-crawler/qa-crawler/src \
+/Users/all42238/Documents/GitHub/qa-crawler/qa-crawler/venv/bin/python3 \
+  -m qa_crawler.cli.search "btn primary large" --limit 15
+
+Summarize the exact matches and top similar combinations.
+</example>
+

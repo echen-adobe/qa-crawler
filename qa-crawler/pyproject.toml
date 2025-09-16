@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qa-crawler"
+version = "0.1.0"
+description = "QA crawler and block map tools"
+requires-python = ">=3.10"
+dependencies = [
+  "playwright",
+  "beautifulsoup4",
+  "python-dotenv",
+  "requests",
+  "flask",
+  "flask-cors",
+  "dirtyjson",
+  "imagehash",
+  "rapidfuzz",
+]
+
+[project.scripts]
+qa-crawler = "qa_crawler.cli.crawl:main"
+block-map-search = "qa_crawler.cli.search:main"
+block-map-sync = "qa_crawler.cli.sync:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+

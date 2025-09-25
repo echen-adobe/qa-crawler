@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 import re
+from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
 from pathlib import Path
 from typing import Any, Dict, List, Tuple, Set, Optional
 
@@ -92,12 +93,47 @@ def resolve_block_map_path(date: Optional[str], explicit_path: Optional[str]) ->
     return str(candidate)
 
 
+def rewrite_branch_url(url: str, branch_name: str) -> str:
+    """If URL matches https://<branch>--<rest>, replace <branch> with branch_name.
+
+    Only rewrites when the pattern with "https://" and at least one "--" is found.
+    """
+    m = re.match(r"^(https://)([^/]+?)--(.*)$", url)
+    if not m:
+        return url
+    scheme, _old_branch, rest = m.groups()
+    return f"{scheme}{branch_name}--{rest}"
+
+
+def add_martech_off(url: str) -> str:
+    """Append martech=off to the query string if not already present."""
+    parsed = urlparse(url)
+    query_items = dict(parse_qsl(parsed.query, keep_blank_values=True))
+    if "martech" not in query_items:
+        query_items["martech"] = "off"
+    new_query = urlencode(query_items, doseq=True)
+    new_parsed = parsed._replace(query=new_query)
+    return urlunparse(new_parsed)
+
+
+def unique_preserve_order(items: List[str]) -> List[str]:
+    seen: Set[str] = set()
+    out: List[str] = []
+    for x in items:
+        if x in seen:
+            continue
+        seen.add(x)
+        out.append(x)
+    return out
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Segmented search: URLs with exact keyword match and top similar class-name combinations")
     parser.add_argument("query", help="Keyword(s) to search for; space-separated tokens")
     parser.add_argument("--date", default=None, help="Date folder under output (YYYY-MM-DD). If omitted, uses most recent date.")
     parser.add_argument("--path", default=None, help="Explicit path to block_map.json (overrides --date)")
     parser.add_argument("--limit", type=int, default=10, help="Max URLs to print for exact matches")
+    parser.add_argument("--branch", default=None, help="If provided, rewrite printed URLs to use this branch before the first --")
     args = parser.parse_args()
 
     resolved_path = resolve_block_map_path(args.date, args.path)
@@ -105,8 +141,19 @@ def main() -> int:
     tokens = tokenize_query(args.query)
 
     exact_urls = exact_match_urls(block_map, tokens)
+
+    # Optionally rewrite URLs to use provided branch name, append martech=off, and ensure uniqueness post-rewrite
+    if args.branch:
+        rewritten = [rewrite_branch_url(u, args.branch) for u in exact_urls]
+        rewritten = [add_martech_off(u) for u in rewritten]
+        exact_urls = unique_preserve_order(rewritten)
+
     if args.limit > 0:
         exact_urls = exact_urls[: args.limit]
+
+    # Optionally rewrite URLs to use provided branch name
+    if args.branch:
+        exact_urls = [rewrite_branch_url(u, args.branch) for u in exact_urls]
 
     combos = top_similar_combinations(block_map, args.query, top_k=5)
 

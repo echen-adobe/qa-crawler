@@ -2,4 +2,4 @@
 set -euo pipefail
 cd qa-crawler
 source venv/bin/activate
-PYTHONPATH=src python3 -m qa_crawler.search "$1"
+PYTHONPATH=src python3 -m qa_crawler.search "$@"

@@ -36,12 +36,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--source",
-        default=str(Path("backend") / "qa" / "block_map.json"),
+        default=str(Path("data") / "qa" / "block_map.json"),
         help="Local block map to upload (relative to repo root)",
     )
     parser.add_argument(
         "--destination",
-        default=str(Path("backend") / "qa" / "block_map.json"),
+        default=str(Path("data") / "qa" / "block_map.json"),
         help="Download destination (relative to repo root)",
     )
     parser.add_argument(

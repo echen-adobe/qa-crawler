@@ -86,7 +86,7 @@ def download_block_map(bucket: str, key: str, destination: Path) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Sync backend/qa/block_map.json from S3")
+    parser = argparse.ArgumentParser(description="Sync data/qa/block_map.json from S3")
     parser.add_argument(
         "--repo-root",
         default=str(Path(__file__).resolve().parents[1]),
@@ -104,7 +104,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--destination",
-        default=str(Path("backend") / "qa" / "block_map.json"),
+        default=str(Path("data") / "qa" / "block_map.json"),
         help="Path (relative to repo root) to overwrite with the downloaded block map",
     )
     return parser
@@ -143,4 +143,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

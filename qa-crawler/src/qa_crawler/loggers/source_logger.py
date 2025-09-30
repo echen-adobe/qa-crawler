@@ -1,10 +1,16 @@
-import json
 import hashlib
-from .logger import Logger
-import os
-from bs4 import BeautifulSoup
-import queue
+import json
 from concurrent.futures import ThreadPoolExecutor
+
+from bs4 import BeautifulSoup
+
+from .logger import Logger
+from qa_crawler.config import (
+    DEFAULT_BLOCK_MAP,
+    DOM_SNAPSHOT_DIR,
+    SOURCE_FILES_PATH,
+    ensure_data_directories,
+)
 
 
 class SourceLogger(Logger):
@@ -12,9 +18,9 @@ class SourceLogger(Logger):
         super().__init__()
         self.source_dict = {}
         self.block_map = {}
-        self.snapshot_queue = queue.Queue()
         self.executor = ThreadPoolExecutor(max_workers=2, thread_name_prefix="snapshot_writer")
         self.pending_snapshots = set()  # Track URLs with pending snapshots
+        ensure_data_directories()
 
     async def init_on_page(self, page, url):
         self.source_dict[url] = []
@@ -30,10 +36,10 @@ class SourceLogger(Logger):
 
     def _write_snapshot_threaded(self, url, html_content):
         try:
-            output_path = f'./qa/dom_snapshots/{url.replace("://", "_").replace("/", "_")}.html'
-            os.makedirs(os.path.dirname(output_path), exist_ok=True)
-            with open(output_path, 'w', encoding='utf-8') as f:
-                f.write(html_content)
+            safe_name = url.replace("://", "_").replace("/", "_") + ".html"
+            output_path = DOM_SNAPSHOT_DIR / safe_name
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(html_content, encoding="utf-8")
             print(f"DOM snapshot saved to {output_path}")
         except Exception as e:
             print(f"Error writing snapshot for {url}: {e}")
@@ -50,13 +56,11 @@ class SourceLogger(Logger):
         existing_source_files = {}
         existing_block_map = {}
         try:
-            with open('./qa/source_files.json', 'r') as f:
-                existing_source_files = json.load(f)
+            existing_source_files = json.loads(SOURCE_FILES_PATH.read_text(encoding="utf-8"))
         except FileNotFoundError:
             pass
         try:
-            with open('./qa/block_map.json', 'r') as f:
-                existing_block_map = json.load(f)
+            existing_block_map = json.loads(DEFAULT_BLOCK_MAP.read_text(encoding="utf-8"))
         except FileNotFoundError:
             pass
 
@@ -75,13 +79,13 @@ class SourceLogger(Logger):
             else:
                 existing_block_map[hash_key] = hash_data
 
-        with open('./qa/source_files.json', 'w') as f:
-            json.dump(existing_source_files, f, indent=2)
-        print(f"Source files saved to source_files.json (merged {len(self.source_dict)} new entries)")
+        SOURCE_FILES_PATH.parent.mkdir(parents=True, exist_ok=True)
+        SOURCE_FILES_PATH.write_text(json.dumps(existing_source_files, indent=2), encoding="utf-8")
+        print(f"Source files saved to {SOURCE_FILES_PATH} (merged {len(self.source_dict)} new entries)")
 
-        with open('./qa/block_map.json', 'w') as f:
-            json.dump(existing_block_map, f, indent=2)
-        print(f"Block map saved to block_map.json (merged {len(self.block_map)} new entries)")
+        DEFAULT_BLOCK_MAP.parent.mkdir(parents=True, exist_ok=True)
+        DEFAULT_BLOCK_MAP.write_text(json.dumps(existing_block_map, indent=2), encoding="utf-8")
+        print(f"Block map saved to {DEFAULT_BLOCK_MAP} (merged {len(self.block_map)} new entries)")
 
     def _filter_source_files(self, response_url, source_files):
         block_path = "/express/code/blocks/"
@@ -110,16 +114,16 @@ class SourceLogger(Logger):
         return hash_map
 
     def query_dom_snapshot(self, url):
-        snapshot_path = f'./qa/dom_snapshots/{url.replace("://", "_").replace("/", "_")}.html'
+        snapshot_path = DOM_SNAPSHOT_DIR / f"{url.replace('://', '_').replace('/', '_')}.html"
         try:
-            with open(snapshot_path, 'r', encoding='utf-8') as f:
-                html_content = f.read()
+            html_content = snapshot_path.read_text(encoding="utf-8")
             soup = BeautifulSoup(html_content, 'html.parser')
             main_element = soup.find('main')
             if not main_element:
                 print(f"No main element found in {snapshot_path}")
                 return
-            section_elements = main_element.find_all(class_='section', recursive=False)
+            print(main_element)
+            section_elements = main_element.find_all(class_='section', recursive=True)
             for section in section_elements:
                 direct_children = section.find_all(recursive=False)
                 for element in direct_children:
@@ -145,6 +149,7 @@ class SourceLogger(Logger):
                             for child in child_divs:
                                 child_classes = child.get('class', [])
                                 add_block_entry(child_classes)
+    
         except FileNotFoundError:
             print(f"Snapshot file not found: {snapshot_path}")
         except Exception as e:
@@ -154,4 +159,3 @@ class SourceLogger(Logger):
         if hasattr(self, 'executor') and self.executor:
             self.executor.shutdown(wait=True)
             print("SourceLogger thread executor shutdown complete")
-

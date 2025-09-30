@@ -1,19 +1,15 @@
-from backend.crawl import main as _legacy_main
-import importlib
-import argparse
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+if __package__ is None or __package__ == "":  # pragma: no cover - script execution fallback
+    repo_src = Path(__file__).resolve().parents[2]
+    if str(repo_src) not in sys.path:
+        sys.path.insert(0, str(repo_src))
+
+from qa_crawler.crawl import main as crawl_main
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(add_help=False)
-    parser.add_argument("--sitemap", type=str, default="./sitemaps/default_sitemap.json")
-    args, _ = parser.parse_known_args()
-    # Prefer packaged crawler if migrated; fallback to legacy backend.crawl
-    try:
-        _pkg = importlib.import_module("qa_crawler.crawl")
-        _main = getattr(_pkg, "main")
-    except Exception:
-        _main = _legacy_main
-    import asyncio
-    asyncio.run(_main(args.sitemap))
-    return 0
-
+    return crawl_main()

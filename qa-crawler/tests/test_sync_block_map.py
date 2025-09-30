@@ -4,18 +4,19 @@ import json
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
-if str(PROJECT_DIR) not in sys.path:
-    sys.path.insert(0, str(PROJECT_DIR))
+SRC_DIR = PROJECT_DIR / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
 
 
 def test_sync_writes_valid_json(tmp_path, monkeypatch):
     # Create a repo-like layout under tmp_path
     repo_root = tmp_path / "qa-crawler"
-    backend_qa = repo_root / "backend" / "qa"
-    backend_qa.mkdir(parents=True, exist_ok=True)
+    data_qa = repo_root / "data" / "qa"
+    data_qa.mkdir(parents=True, exist_ok=True)
 
     data = {"abc": {"class_names": ["foo"], "urls": ["u1"]}}
-    src_path = backend_qa / "block_map.json"
+    src_path = data_qa / "block_map.json"
     src_path.write_text(json.dumps(data), encoding="utf-8")
 
     script_dir = repo_root / "scripts"
@@ -57,11 +58,11 @@ def test_sync_writes_valid_json(tmp_path, monkeypatch):
 
 def test_sync_rejects_invalid_json(tmp_path, monkeypatch):
     repo_root = tmp_path / "qa-crawler"
-    backend_qa = repo_root / "backend" / "qa"
-    backend_qa.mkdir(parents=True, exist_ok=True)
+    data_qa = repo_root / "data" / "qa"
+    data_qa.mkdir(parents=True, exist_ok=True)
 
     # Write invalid JSON
-    src_path = backend_qa / "block_map.json"
+    src_path = data_qa / "block_map.json"
     src_path.write_text("{"""not-json"""}", encoding="utf-8")
 
     script_dir = repo_root / "scripts"
@@ -88,4 +89,3 @@ def test_sync_rejects_invalid_json(tmp_path, monkeypatch):
     finally:
         sys.argv = old_argv
     assert rc != 0
-

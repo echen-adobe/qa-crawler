@@ -5,12 +5,13 @@ import json
 import builtins
 
 
-# Ensure we can import from qa-crawler/backend
+# Ensure we can import the editable package without installation
 PROJECT_DIR = Path(__file__).resolve().parents[1]
-if str(PROJECT_DIR) not in sys.path:
-    sys.path.insert(0, str(PROJECT_DIR))
+SRC_DIR = PROJECT_DIR / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
 
-from backend.search_block_map import (  # noqa: E402
+from qa_crawler.search import (  # noqa: E402
     tokenize_query,
     exact_match_urls,
     top_similar_combinations,
@@ -71,4 +72,3 @@ def test_cli_with_explicit_path(tmp_path, capsys, monkeypatch):
     assert "Exact match (all keywords):" in out
     assert "https://a.example/hero1" in out
     assert "Top 5 similar class name combinations" in out
-

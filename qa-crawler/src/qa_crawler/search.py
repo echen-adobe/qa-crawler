@@ -9,7 +9,7 @@ from typing import Any, Dict, List, Tuple, Set, Optional
 
 from rapidfuzz import process, fuzz
 
-from .config import REPO_ROOT
+from .config import DEFAULT_BLOCK_MAP, OUTPUT_DIR
 
 
 def load_block_map(path: str) -> Dict[str, Any]:
@@ -73,7 +73,7 @@ def top_similar_combinations(block_map: Dict[str, Any], query: str, top_k: int =
 def resolve_block_map_path(date: Optional[str], explicit_path: Optional[str]) -> str:
     if explicit_path:
         return explicit_path
-    output_dir = REPO_ROOT / "output"
+    output_dir = OUTPUT_DIR
     candidate: Optional[Path] = None
     date_pattern = re.compile(r"^\d{4}-\d{2}-\d{2}$")
     if date:
@@ -89,7 +89,7 @@ def resolve_block_map_path(date: Optional[str], explicit_path: Optional[str]) ->
                 candidate = bm
                 break
     if candidate is None:
-        candidate = REPO_ROOT / "backend" / "qa" / "block_map.json"
+        candidate = DEFAULT_BLOCK_MAP
     return str(candidate)
 
 
@@ -175,4 +175,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

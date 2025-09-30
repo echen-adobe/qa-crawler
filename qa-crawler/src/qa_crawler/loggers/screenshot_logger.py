@@ -1,6 +1,13 @@
-import os
 import shutil
+from pathlib import Path
+
 from .logger import Logger
+from qa_crawler.config import (
+    CONTROL_SCREENSHOT_DIR,
+    DIFF_SCREENSHOT_DIR,
+    EXPERIMENTAL_SCREENSHOT_DIR,
+    ensure_data_directories,
+)
 
 
 class ScreenshotLogger(Logger):
@@ -10,12 +17,12 @@ class ScreenshotLogger(Logger):
         self._clear_screenshot_directories()
 
     def _clear_screenshot_directories(self):
-        directories = ['./qa/control', './qa/experimental', './qa/diff']
-        for dir_path in directories:
-            if os.path.exists(dir_path):
-                shutil.rmtree(dir_path)
-            os.makedirs(dir_path, exist_ok=True)
-            print(f"Cleared and recreated directory: {dir_path}")
+        ensure_data_directories()
+        for directory in (CONTROL_SCREENSHOT_DIR, EXPERIMENTAL_SCREENSHOT_DIR, DIFF_SCREENSHOT_DIR):
+            if directory.exists():
+                shutil.rmtree(directory)
+            directory.mkdir(parents=True, exist_ok=True)
+            print(f"Cleared and recreated directory: {directory}")
 
     async def init_on_page(self, page, url):
         pass
@@ -24,7 +31,9 @@ class ScreenshotLogger(Logger):
         location = url.split("//")[1].split("/", 1)[1]
         safe_url = location.replace('/', '_').replace('.', '_')
         await self.scroll_to_bottom(page)
-        await page.screenshot(path=f"./qa/{environment}/{safe_url}.png", full_page=True)
+        target_dir = CONTROL_SCREENSHOT_DIR if environment == "control" else EXPERIMENTAL_SCREENSHOT_DIR
+        target_dir.mkdir(parents=True, exist_ok=True)
+        await page.screenshot(path=str(target_dir / f"{safe_url}.png"), full_page=True)
         self.screenshot_count += 1
         print(f"Screenshot taken for {url} ({environment})")
 
@@ -49,4 +58,3 @@ class ScreenshotLogger(Logger):
             current_position += dimensions['viewportHeight']
         await page.evaluate(f"window.scrollTo(0, {current_position})")
         await page.wait_for_timeout(50)
-

@@ -14,7 +14,7 @@ def main() -> int:
     args = parser.parse_args()
 
     repo_root = Path(args.root)
-    qa_block_map = repo_root / "backend" / "qa" / "block_map.json"
+    qa_block_map = repo_root / "data" / "qa" / "block_map.json"
     out_dir = repo_root / "output" / args.date
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / "block_map.json"
@@ -41,4 +41,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

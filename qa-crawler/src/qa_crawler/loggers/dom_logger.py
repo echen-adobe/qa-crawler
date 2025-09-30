@@ -1,30 +1,41 @@
+"""Capture DOM snapshots via the Playwright CDP API."""
+
+from __future__ import annotations
+
 from .logger import Logger
 
 
 class DomLogger(Logger):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
-        self.screenshot_count = 0
+        self.snapshot_count = 0
 
-    async def init_on_page(self, page, url):
-        pass
+    async def init_on_page(self, page, url):  # pragma: no cover - hook required by interface
+        return None
 
     async def log(self, page, url, environment):
-        location = url.split("//")[1].split("/", 1)[1]
-        safe_url = location.replace('/', '_').replace('.', '_')
-        cdp = await page.context().newCDPSession(page)
-        snapshot = await cdp.send('DOMSnapshot.captureSnapshot', {
-            'computedStyles': [
-                'display', 'position', 'top', 'left',
-                'width',   'height',  'margin', 'padding'
-            ],
-        })
-        self.screenshot_count += 1
-        print(f"Screenshot taken for {url} ({environment})")
+        context = page.context
+        cdp = await context.new_cdp_session(page)
+        await cdp.send(
+            "DOMSnapshot.captureSnapshot",
+            {
+                "computedStyles": [
+                    "display",
+                    "position",
+                    "top",
+                    "left",
+                    "width",
+                    "height",
+                    "margin",
+                    "padding",
+                ]
+            },
+        )
+        self.snapshot_count += 1
+        print(f"DOM snapshot captured for {url} ({environment})")
 
-    def write_logs(self):
-        print(f"Total screenshots taken: {self.screenshot_count}")
+    def write_logs(self) -> None:
+        print(f"Total DOM snapshots captured: {self.snapshot_count}")
 
-    def get_screenshot_count(self):
-        return self.screenshot_count
-
+    def get_snapshot_count(self) -> int:
+        return self.snapshot_count

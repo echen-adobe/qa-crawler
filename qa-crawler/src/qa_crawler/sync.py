@@ -5,7 +5,7 @@ import json
 import os
 from pathlib import Path
 
-from .config import REPO_ROOT
+from .config import DEFAULT_BLOCK_MAP, OUTPUT_DIR, REPO_ROOT
 
 
 def _upload_directory_to_gcs(local_dir: Path, bucket_name: str, prefix: str = "") -> None:
@@ -73,8 +73,8 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    qa_block_map = REPO_ROOT / "backend" / "qa" / "block_map.json"
-    out_dir = REPO_ROOT / "output" / args.date
+    qa_block_map = DEFAULT_BLOCK_MAP
+    out_dir = OUTPUT_DIR / args.date
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / "block_map.json"
 
@@ -108,4 +108,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

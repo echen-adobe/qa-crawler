@@ -193,8 +193,6 @@ async def run_crawl(sitemap_file: str | Path, *, batch_size: int = 10, limit: in
             "source": SourceLogger(),
             "failure": FailureLogger(),
         }
-        if ScreenshotLogger:
-            loggers["screenshot"] = ScreenshotLogger()
         if DomLogger:
             loggers["dom"] = DomLogger()
 

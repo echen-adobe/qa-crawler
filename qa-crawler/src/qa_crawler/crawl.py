@@ -126,8 +126,15 @@ async def process_page_with_context(context, url: str, environment: str, loggers
             nav_url = url + ("&martech=off" if ("?" in url) else "?martech=off")
 
         await page.goto(nav_url, wait_until="domcontentloaded", timeout=60_000)
-        await asyncio.sleep(random.randint(1, 5))
-        await page.wait_for_selector("body", timeout=15_000)
+        await asyncio.sleep(random.randint(1, 5)) 
+        await page.wait_for_selector("body", state="attached", timeout=45000)
+        await page.wait_for_function("""
+        () => {
+            const b = document.body;
+            const s = b && getComputedStyle(b);
+            return s && s.visibility !== 'hidden' && s.display !== 'none';
+        }
+        """, timeout=15000)
 
         for logger in loggers.values():
             await logger.log(page, url, environment)

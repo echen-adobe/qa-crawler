@@ -132,7 +132,7 @@ def main() -> int:
     parser.add_argument("query", help="Keyword(s) to search for; space-separated tokens")
     parser.add_argument("--date", default=None, help="Date folder under output (YYYY-MM-DD). If omitted, uses most recent date.")
     parser.add_argument("--path", default=None, help="Explicit path to block_map.json (overrides --date)")
-    parser.add_argument("--limit", type=int, default=10, help="Max URLs to print for exact matches")
+    parser.add_argument("--limit", type=int, default=0, help="Max URLs to print for exact matches (0 = no limit)")
     parser.add_argument("--branch", default=None, help="If provided, rewrite printed URLs to use this branch before the first --")
     args = parser.parse_args()
 
@@ -148,7 +148,7 @@ def main() -> int:
         rewritten = [add_martech_off(u) for u in rewritten]
         exact_urls = unique_preserve_order(rewritten)
 
-    if args.limit > 0:
+    if args.limit and args.limit > 0:
         exact_urls = exact_urls[: args.limit]
 
     # Optionally rewrite URLs to use provided branch name

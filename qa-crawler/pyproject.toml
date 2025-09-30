@@ -17,6 +17,7 @@ dependencies = [
   "dirtyjson",
   "imagehash",
   "rapidfuzz",
+  "boto3",
 ]
 
 [project.scripts]
@@ -26,4 +27,3 @@ block-map-sync = "qa_crawler.cli.sync:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-

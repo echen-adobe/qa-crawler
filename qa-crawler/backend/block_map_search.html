@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Block Map Search</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+      h2 { margin: 0 0 0.5rem; }
+      .muted { color: #666; }
+      .row { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+      @media (min-width: 900px) { .row { grid-template-columns: 1fr 1fr; } }
+      input[type="text"] { width: 100%; padding: 0.6rem 0.8rem; font-size: 1rem; }
+      button { padding: 0.5rem 0.8rem; font-size: 0.95rem; cursor: pointer; }
+      ul { padding-left: 1.2rem; }
+      .scroll { max-height: 420px; overflow: auto; border: 1px solid #eee; border-radius: 6px; padding: 0.5rem 0.75rem; }
+      .toolbar { display: flex; align-items: center; gap: 0.5rem; justify-content: space-between; margin-bottom: 0.5rem; }
+      .toolbar input[type="text"] { width: 100%; max-width: 420px; font-size: 0.95rem; padding: 0.4rem 0.6rem; }
+      .score { color: #333; font-variant-numeric: tabular-nums; }
+      .stack { display: grid; gap: 0.5rem; }
+      .grid { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; align-items: start; }
+      .card { border: 1px solid #e5e5e5; border-radius: 8px; padding: 1rem; }
+      .ok { color: #0a7; }
+      .err { color: #c00; }
+    </style>
+  </head>
+  <body>
+    <h2>Block Map Search</h2>
+    <p class="muted">Paste a block_map.json URL (must allow CORS), load it, then search by keywords. You can also pass <code>?blockMapUrl=...</code> in the page URL.</p>
+
+    <div class="card stack" style="margin-bottom: 1rem;">
+      <div class="grid">
+        <input id="bm" type="text" placeholder="https://host/path/to/block_map.json" />
+        <button id="loadBtn">Load</button>
+      </div>
+      <div id="status" class="muted">Not loaded.</div>
+    </div>
+
+    <input id="q" type="text" placeholder="Type keywords (e.g. hero centered sticky)" disabled />
+
+    <div class="row" style="margin-top: 1rem;">
+      <div class="card">
+        <div class="toolbar">
+          <h3 style="margin: 0;">Exact match (all keywords)</h3>
+          <div style="display:flex; align-items:center; gap: 0.5rem;">
+            <input id="urlFilter" type="text" placeholder="Filter URLs (substring)" disabled />
+            <button id="copyBtn" title="Copy exact-match URLs to clipboard" disabled>Copy URLs</button>
+          </div>
+        </div>
+        <div class="scroll">
+          <ul id="exact"></ul>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Top 5 similar class name combinations (combo, score)</h3>
+        <ul id="combos"></ul>
+      </div>
+    </div>
+
+    <script>
+      const TOP_K = 5;
+      let blockMap = null;
+      let currentExact = [];
+
+      function qs(name) {
+        const p = new URLSearchParams(location.search);
+        return p.get(name);
+      }
+
+      function setStatus(html, cls = "") {
+        const el = document.getElementById('status');
+        el.className = `muted ${cls}`.trim();
+        el.innerHTML = html;
+      }
+
+      function tokenize(s) {
+        return String(s || '')
+          .toLowerCase()
+          .split(/\s+/)
+          .map(t => t.trim())
+          .filter(Boolean);
+      }
+
+      function uniquePreserveOrder(arr) {
+        const seen = new Set();
+        const out = [];
+        for (const x of arr) {
+          if (!seen.has(x)) {
+            seen.add(x);
+            out.push(x);
+          }
+        }
+        return out;
+      }
+
+      function jaccardScore(tokensA, tokensB) {
+        const a = new Set(tokensA);
+        const b = new Set(tokensB);
+        if (a.size === 0 && b.size === 0) return 0;
+        let inter = 0;
+        for (const t of a) if (b.has(t)) inter++;
+        const union = a.size + b.size - inter;
+        return Math.round((inter / (union || 1)) * 100);
+      }
+
+      function exactMatchUrls(blockMapObj, tokens) {
+        if (tokens.length === 0) return [];
+        const out = [];
+        const seen = new Set();
+        for (const [_hash, data] of Object.entries(blockMapObj)) {
+          const classNames = (data.class_names || []).map(c => String(c || '').toLowerCase());
+          const classSet = new Set(classNames);
+          const allPresent = tokens.every(t => classSet.has(t));
+          if (allPresent) {
+            for (const u of (data.urls || [])) {
+              if (!seen.has(u)) {
+                seen.add(u);
+                out.push(u);
+              }
+            }
+          }
+        }
+        return out;
+      }
+
+      function topSimilarCombos(blockMapObj, query, topK = 5) {
+        const qTokens = tokenize(query);
+        const seenCombo = new Set();
+        const candidates = [];
+
+        for (const [hashKey, data] of Object.entries(blockMapObj)) {
+          const classes = (data.class_names || [])
+            .map(c => String(c || '').trim().toLowerCase())
+            .filter(Boolean);
+          if (classes.length === 0) continue;
+          const combo = classes.slice().sort().join(' ');
+          if (seenCombo.has(combo)) continue;
+          seenCombo.add(combo);
+          const score = jaccardScore(qTokens, tokenize(combo));
+          candidates.push({ combo, score, hashKey });
+        }
+
+        candidates.sort((a, b) => b.score - a.score);
+        return candidates.slice(0, topK);
+      }
+
+      function renderList(el, items, renderItem) {
+        el.innerHTML = '';
+        if (!items || items.length === 0) {
+          const li = document.createElement('li');
+          li.className = 'muted';
+          li.textContent = '(none)';
+          el.appendChild(li);
+          return;
+        }
+        for (const item of items) {
+          const li = document.createElement('li');
+          li.appendChild(renderItem(item));
+          el.appendChild(li);
+        }
+      }
+
+      function makeLink(url) {
+        const a = document.createElement('a');
+        a.href = url;
+        a.textContent = url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        return a;
+      }
+
+      async function loadBlockMap(url) {
+        setStatus(`Loading <code>${url}</code> ...`);
+        const res = await fetch(url, { credentials: 'omit' });
+        if (!res.ok) {
+          throw new Error(`Failed to fetch block map: ${res.status} ${res.statusText}`);
+        }
+        const json = await res.json();
+        setStatus(`Loaded <code>${url}</code>`, 'ok');
+        return json;
+      }
+
+      function applyUrlFilter(urls) {
+        const f = (document.getElementById('urlFilter').value || '').trim().toLowerCase();
+        if (!f) return urls;
+        return urls.filter(u => String(u).toLowerCase().includes(f));
+      }
+
+      function update() {
+        if (!blockMap) return;
+        const q = document.getElementById('q').value || '';
+        const tokens = tokenize(q);
+
+        currentExact = exactMatchUrls(blockMap, tokens);
+        const exact = applyUrlFilter(currentExact);
+        renderList(
+          document.getElementById('exact'),
+          exact,
+          (u) => makeLink(u)
+        );
+        const copyBtn = document.getElementById('copyBtn');
+        copyBtn.disabled = exact.length === 0;
+        copyBtn.onclick = async () => {
+          try {
+            await navigator.clipboard.writeText((exact || []).join('\n'));
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => (copyBtn.textContent = 'Copy URLs'), 1200);
+          } catch (e) {
+            console.error(e);
+            alert('Failed to copy to clipboard.');
+          }
+        };
+
+        const combos = topSimilarCombos(blockMap, q, TOP_K);
+        renderList(
+          document.getElementById('combos'),
+          combos,
+          (c) => {
+            const span = document.createElement('span');
+            span.innerHTML = `${c.combo} <span class="score">(${c.score})</span>`;
+            return span;
+          }
+        );
+      }
+
+      (function init() {
+        const qEl = document.getElementById('q');
+        const bmEl = document.getElementById('bm');
+        const btn = document.getElementById('loadBtn');
+        const urlFilter = document.getElementById('urlFilter');
+
+        qEl.addEventListener('input', update);
+        urlFilter.addEventListener('input', () => {
+          // Re-render with filter without recomputing the underlying matches
+          const exact = applyUrlFilter(currentExact);
+          renderList(
+            document.getElementById('exact'),
+            exact,
+            (u) => makeLink(u)
+          );
+          const copyBtn = document.getElementById('copyBtn');
+          copyBtn.disabled = exact.length === 0;
+        });
+
+        btn.addEventListener('click', async () => {
+          const url = (bmEl.value || '').trim();
+          if (!url) {
+            setStatus('Please provide a block_map.json URL.', 'err');
+            return;
+          }
+          try {
+            setStatus('Loading...');
+            blockMap = await loadBlockMap(url);
+            qEl.disabled = false;
+            urlFilter.disabled = false;
+            update();
+          } catch (err) {
+            console.error(err);
+            setStatus('Error loading block map. See console for details.', 'err');
+          }
+        });
+
+        const initialUrl = qs('blockMapUrl') || qs('url') || '';
+        if (initialUrl) {
+          bmEl.value = initialUrl;
+          btn.click();
+        }
+      })();
+    </script>
+  </body>
+  </html>
+
+

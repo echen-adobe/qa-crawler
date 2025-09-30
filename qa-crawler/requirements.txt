@@ -10,3 +10,4 @@ dirtyjson
 imagehash
 rapidfuzz
 google-cloud-storage
+boto3

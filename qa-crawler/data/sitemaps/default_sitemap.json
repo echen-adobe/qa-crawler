@@ -3,6 +3,7 @@
     "control_branch_host" : "https://main--express-milo--adobecom.aem.live",
     "urls" : [],
     "sitemap_urls" : [
-        "https://www.adobe.com/express/sitemap.xml"
+        "https://www.adobe.com/express/sitemap.xml",
+        "https://www.adobe.com/express/templates/sitemap.xml"
     ]
 }

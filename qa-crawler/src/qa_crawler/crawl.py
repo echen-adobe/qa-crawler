@@ -9,7 +9,7 @@ import random
 import re
 import sys
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, Mapping
 
 if __package__ is None or __package__ == "":  # pragma: no cover - script execution fallback
     repo_src = Path(__file__).resolve().parents[2] / "src"
@@ -36,7 +36,36 @@ except Exception:  # pragma: no cover - when Pillow/Playwright extras unavailabl
     DomLogger = None  # type: ignore
 
 load_dotenv()
-print("Loaded environment variables")
+
+
+def resolve_sitemap_sources(config: Mapping[str, Any]) -> list[str]:
+    """Return unique sitemap URLs defined in the config (if any)."""
+
+    sources: list[str] = []
+    raw = config.get("sitemap_urls")
+    if isinstance(raw, str):
+        raw = [raw]
+    if isinstance(raw, Iterable):
+        for candidate in raw:
+            if isinstance(candidate, str):
+                trimmed = candidate.strip()
+                if trimmed:
+                    sources.append(trimmed)
+    single = config.get("sitemap_url")
+    if isinstance(single, str):
+        trimmed = single.strip()
+        if trimmed:
+            sources.append(trimmed)
+
+    unique_sources: list[str] = []
+    seen: set[str] = set()
+    for source in sources:
+        if source in seen:
+            continue
+        seen.add(source)
+        unique_sources.append(source)
+    return unique_sources
+
 
 async def load_config(sitemap_file: str | Path) -> dict[str, Any]:
     path = Path(sitemap_file)
@@ -96,9 +125,22 @@ async def get_urls_for_environment(urls: Iterable[str], environment: str) -> lis
 
 async def get_urls(context, sitemap_file: str | Path) -> tuple[list[str], list[str]]:
     config = await load_config(sitemap_file)
-    urls = config.get("urls", [])
+    urls = list(config.get("urls", []))
     if not urls:
-        urls = await fetch_sitemap_urls(context, config["sitemap_url"])
+        sources = resolve_sitemap_sources(config)
+        if sources:
+            sitemap_results = await asyncio.gather(
+                *(fetch_sitemap_urls(context, sitemap) for sitemap in sources)
+            )
+            seen: set[str] = set()
+            combined: list[str] = []
+            for result in sitemap_results:
+                for candidate in result:
+                    if candidate in seen:
+                        continue
+                    seen.add(candidate)
+                    combined.append(candidate)
+            urls = combined
     control_urls = await get_urls_for_environment(urls, config["control_branch_host"])
     experimental_urls = await get_urls_for_environment(urls, config["experimental_branch_host"])
     return control_urls, experimental_urls

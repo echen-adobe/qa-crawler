@@ -7,6 +7,7 @@ Core package code lives in `src/qa_crawler`, with CLI shims in `cli/`, search an
 - `python -m venv .venv && source .venv/bin/activate`: spin up a Python 3.10 virtualenv.
 - `pip install -r requirements.txt && pip install -e .`: install crawler dependencies and the package in editable mode.
 - `playwright install`: download browser drivers required by `qa_crawler.crawl`.
+- `python -m qa_crawler.cli.crawl --sitemap data/sitemaps/default_sitemap.json`: run the crawler; specify `sitemap_urls` in the JSON to aggregate multiple sitemaps before crawling.
 - `python -m qa_crawler.cli.search "hero centered" --path data/qa/block_map.json`: exercise the packaged search CLI.
 - `pytest`: run the full suite; narrow scope with `pytest tests/test_sync_block_map.py -k missing` when iterating.
 - `python scripts/sync_block_map.py --bucket <bucket>`: sync the block map from GCS, defaulting to `QA_CRAWLER_GCS_BUCKET` if exported.

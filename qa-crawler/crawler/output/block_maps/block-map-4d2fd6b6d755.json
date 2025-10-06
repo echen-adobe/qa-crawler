@@ -1,0 +1,198 @@
+{
+  "367543c087af749a63ae2c466853d6f8f47840dc2c930ecba1eac7ab75973720": {
+    "class_names": [
+      "fullscreen-marquee",
+      "image"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/chart",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/chart"
+    ]
+  },
+  "5b815bb69b4c0263c5da6807487aef2a27fc964f7eee79fdbd68df65510a6603": {
+    "class_names": [
+      "template-x",
+      "sixcols",
+      "template-x-complete"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/chart",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/chart"
+    ]
+  },
+  "858c84012de39abca857704f093e6dd7f5762ed48a75dc4b8f591d2299790083": {
+    "class_names": [
+      "link-list-wrapper"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/chart",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/chart"
+    ]
+  },
+  "030599454abb9ecb0e61a713b91252a997ebbd8f5d6bbfa37bb9a0b01bc05d1d": {
+    "class_names": [
+      "link-list"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/chart",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/chart"
+    ]
+  },
+  "2dd6f7ce9fdbd9c3c02ce4fdda3f55f21f709f0428cc3ae69bd1b04a1faad093": {
+    "class_names": [
+      "ax-columns",
+      "centered",
+      "width-2-columns"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/chart",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/chart"
+    ]
+  },
+  "ed7002b439e9ac845f22357d822bac1444730fbdb6016d3ec9432297b9ec9f73": {
+    "class_names": [
+      "content"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/chart",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/chart"
+    ]
+  },
+  "30de18cc4ea2bf4601b4d97e3dc591d762e5bf00400e320c319a1f03821c6257": {
+    "class_names": [
+      "faq"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/chart",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/chart"
+    ]
+  },
+  "b0a6f7cb84bbe4f811a3ef5ab103dbf0bf1a927c7a405c2485790d8a13b5b921": {
+    "class_names": [
+      "floating-button",
+      "block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/chart",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/chart"
+    ]
+  },
+  "44ac02087840c801a9f0b128ba66057139548fc79cd8b22b47a324b2af974460": {
+    "class_names": [
+      "promotion",
+      "auto-promotion"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/chart",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/brochure",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/comic-strip",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/chart"
+    ]
+  },
+  "a4fcfeecc07fbb33cd41aa27f95a1d501432e41574dfaceee1af4af3d5dc9940": {
+    "class_names": [
+      "ax-columns",
+      "fullsize",
+      "width-2-columns"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage"
+    ]
+  },
+  "269e3c767dede1b570752519634d54c0592d382e8927ddc75acf1f4cfd2967ce": {
+    "class_names": [
+      "steps",
+      "highlight"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage"
+    ]
+  },
+  "8db58cb489f22474cb8d89a82a898a511555067d84977fe6fa1b4584653ec2d3": {
+    "class_names": [
+      "ax-columns",
+      "width-2-columns"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage"
+    ]
+  },
+  "8c7ed2d9be59e21cf7cfc7da75c6c0cb7dd751f4a870f0f9236f0f35cbaf584e": {
+    "class_names": [
+      "banner"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage/birthday",
+      "https://stage--express-milo--adobecom.aem.live/de/express/create/photo-collage",
+      "https://main--express-milo--adobecom.aem.live/de/express/create/photo-collage"
+    ]
+  }
+}

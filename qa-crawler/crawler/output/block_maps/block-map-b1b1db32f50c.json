@@ -1,0 +1,456 @@
+{
+  "ed7002b439e9ac845f22357d822bac1444730fbdb6016d3ec9432297b9ec9f73": {
+    "class_names": [
+      "content"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/deployment",
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/affiliate",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/deployment",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/affiliate",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/"
+    ]
+  },
+  "7c0b7f35bcc979119e0f7d1ec64b8dc5fd0d59c0af6c9d1047d6ff8fd8336b5b": {
+    "class_names": [
+      "how-to-steps"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/deployment",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/deployment"
+    ]
+  },
+  "dba0d1b2f3e2dd1c4499b2d4abaa5b0d7c01e259588adeb299b312843365a2b1": {
+    "class_names": [
+      "icon-list-wrapper"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/deployment",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/deployment"
+    ]
+  },
+  "3008cec24dec86a7fd2ab658875df2dc08ae43abab51d41ef908a0e29881f472": {
+    "class_names": [
+      "icon-list"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/deployment",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/deployment"
+    ]
+  },
+  "cdcdc322da29c7051424246cdb695f31f0dbc31e7fec257a7cbd11f0e4feaae2": {
+    "class_names": [
+      "section-metadata"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/deployment",
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/deployment",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/"
+    ]
+  },
+  "30de18cc4ea2bf4601b4d97e3dc591d762e5bf00400e320c319a1f03821c6257": {
+    "class_names": [
+      "faq"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/deployment",
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/deployment",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/"
+    ]
+  },
+  "8c7ed2d9be59e21cf7cfc7da75c6c0cb7dd751f4a870f0f9236f0f35cbaf584e": {
+    "class_names": [
+      "banner"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/deployment",
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/deployment",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/"
+    ]
+  },
+  "5bf6ddb39f9abba2411b40a70d5c0d0da6577b0353ccc4c03300279c9ddb689a": {
+    "class_names": [
+      "ax-marquee-wrapper"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/"
+    ]
+  },
+  "9d1edd5c7788d24f7d0323a82d3a34385d0d9b8b867ded9868fa034e14b0fbdb": {
+    "class_names": [
+      "ax-marquee",
+      "short",
+      "has-mobile-animation",
+      "has-desktop-animation",
+      "appear"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/"
+    ]
+  },
+  "f287d93b4c82eb2e5e4f7a3cf7faab06a8dfd85c211e10b5a9c4c30d53e47e33": {
+    "class_names": [
+      "wayfinder"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/"
+    ]
+  },
+  "78255add4b2b441e3b2ec52a5aa7236a1a3a3928044e6b202e4c14f2b4a9fd33": {
+    "class_names": [
+      "gen-ai-cards-wrapper"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/"
+    ]
+  },
+  "b4cb99f62d9b09cffab10de273d3ff6989d1fca4044b959e9c5df06edeca1d05": {
+    "class_names": [
+      "gen-ai-cards"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/"
+    ]
+  },
+  "8db58cb489f22474cb8d89a82a898a511555067d84977fe6fa1b4584653ec2d3": {
+    "class_names": [
+      "ax-columns",
+      "width-2-columns"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/"
+    ]
+  },
+  "b0a6f7cb84bbe4f811a3ef5ab103dbf0bf1a927c7a405c2485790d8a13b5b921": {
+    "class_names": [
+      "floating-button",
+      "block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/",
+      "https://stage--express-milo--adobecom.aem.live/uk/education/express/"
+    ]
+  },
+  "0dadf3c27a75e3091cb0d50cf7c61aa3b4b5c37c4bd8f3f4427c891987eab1a1": {
+    "class_names": [
+      "grid-marquee"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors"
+    ]
+  },
+  "b561b15daf3e8f96be2e10ebd586ff2ae7c115d4cc8574adb3c21c6f98073b7d": {
+    "class_names": [
+      "text",
+      "center",
+      "l-spacing",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors"
+    ]
+  },
+  "18bc6cd47a34f18038019df94f4839b85fb7d3aec45a80ef98018bb92137141f": {
+    "class_names": [
+      "discover-cards"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "4f0682e76938117068f8ede8aa1a295e18f5d8a0efede11370c4aa27781a3526": {
+    "class_names": [
+      "how-to-cards",
+      "schema"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors"
+    ]
+  },
+  "b298d1fc8a7ad8b68c8b7738cff1b173f12f06f7b4d2a51f100ca49f5ba99b52": {
+    "class_names": [
+      "text",
+      "s-spacing",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors"
+    ]
+  },
+  "68a6ff0a4ce440c63191926624ff0ab0c20b70c56a5acff3e4208d6371492c31": {
+    "class_names": [
+      "text",
+      "center",
+      "xxs-spacing",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors"
+    ]
+  },
+  "2c520491a4d41eda81813adbb8b778e1121c052bcff0ee5e1ae7d5ed054fb026": {
+    "class_names": [
+      "quotes-wrapper"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "37a6482867683ee3a8122b7132806c4dedca002f3b4481f17da8d14b9a2724cd": {
+    "class_names": [
+      "quotes"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors"
+    ]
+  },
+  "30d91c0ac6c78faa09c683caca880f0d08c60b803d7524a3bf2d24348022fd69": {
+    "class_names": [
+      "text",
+      "center",
+      "l-spacing-top",
+      "xxs-spacing-bottom",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors"
+    ]
+  },
+  "7579cc2bb7b8be9ac13389396a586acc06d63e738fcb6fd9f5aa4c2fca801a4d": {
+    "class_names": [
+      "pricing-table-wrapper"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors"
+    ]
+  },
+  "1faca58947f408e66eac058971e2aa66e24d8a6e5615ae63123e51db80f85aee": {
+    "class_names": [
+      "pricing-table",
+      "sticky-show5",
+      "vertical-header",
+      "vertical-shading",
+      "sticky",
+      "show5",
+      "vertical",
+      "header",
+      "shading",
+      "many-cols"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors"
+    ]
+  },
+  "776597e7d2c44f6bb888179e72efbef1867e696bd5a106b3c24a884cca9aff12": {
+    "class_names": [
+      "list-wrapper"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "a330395cc0a53ad1207736546afff4735940937564bbf75ce1edad40780d9139": {
+    "class_names": [
+      "list"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "285f493663cf4c6eb2f68f242d5d9cad9d1e6ef825cf024036a03c7ab3ad2051": {
+    "class_names": [
+      "template-x",
+      "horizontal",
+      "fullwidth"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors"
+    ]
+  },
+  "708afb4cb4fd76517b7f3cc4c1d58303f625369220f3d8b315a7b7744ad1fe61": {
+    "class_names": [
+      "banner",
+      "cool"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/ambassadors",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "fdb9b4c96e790a1d68e416b8ec531c4762c7a9294cbdef356c40e919d21d8152": {
+    "class_names": [
+      "ax-columns",
+      "top-center",
+      "top",
+      "center",
+      "width-3-columns"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/express/affiliate",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/affiliate"
+    ]
+  },
+  "983ec1a2b7915ce32ccd86260f5c157a9580c83828e0182e81d2785910ebe37f": {
+    "class_names": [
+      "ax-columns",
+      "top-center",
+      "top",
+      "center",
+      "width-2-columns"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/uk/express/affiliate",
+      "https://stage--express-milo--adobecom.aem.live/uk/express/affiliate"
+    ]
+  },
+  "3a413f3828d50a26f0533bca7d5189503ccc0952717610d0e249a6c6ba708f69": {
+    "class_names": [
+      "grid-marquee",
+      "ratings"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "237eb7136f484f90639dd66587d5ebb8e2f979c051a9cadbe4e771fae39d58c8": {
+    "class_names": [
+      "wayfinder",
+      "gradient"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "e919b83b4f19046cc24d9ab0834c95c7508766887cb56e81d88d2fe6d0ccab6d": {
+    "class_names": [
+      "gen-ai-cards-wrapper",
+      "homepage"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "d78189b3ca542ac1d3ed93365c076ffa3aa195faf42434587bf06ecd428bfd90": {
+    "class_names": [
+      "gen-ai-cards",
+      "homepage"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "3ec78282be467c401fb673a10bf0fc0766a522d9c3db39fbf3cc90c2c00d8577": {
+    "class_names": [
+      "quotes",
+      "singular"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "3f3fc2b5a3f3c49080a14f00b394d11a6755955dbf65607b00e90973f219e242": {
+    "class_names": [
+      "content-toggle-wrapper"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "b0f7da3726a415295eed2e8d093008c7c78a944ec65352e062ea72058fc54a9e": {
+    "class_names": [
+      "content-toggle-v2",
+      "padding-20"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "c7bfaf05c72b806d47b091a40bf541179b175c15259e6a98134a9ceeabcca278": {
+    "class_names": [
+      "simplified-pricing-cards-v2-wrapper"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "5488e7f638d0560b8047630d8d7e00279d99489102449329bf6c2945c829a610": {
+    "class_names": [
+      "simplified-pricing-cards-v2",
+      "loaded"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  },
+  "77c1cb6503dd12c8bc66d38e52baeff4c5b5cc6a685d5bab2aff8d612dc9fec4": {
+    "class_names": [
+      "logo-row",
+      "block-layout"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/uk/express/",
+      "https://main--express-milo--adobecom.aem.live/uk/express/"
+    ]
+  }
+}

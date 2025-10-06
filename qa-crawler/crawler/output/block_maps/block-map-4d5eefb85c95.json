@@ -1,0 +1,262 @@
+{
+  "d919f737b268c40b4e98c602a48f538d7939f9e06f36dbad0ed87d74a1beccb1": {
+    "class_names": [
+      "hero-color-wrapper"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "d726a8c35b6ca1ee9fd2f886fc407becaa3f6c72d970e6c4123489b7c24f63cc": {
+    "class_names": [
+      "hero-color",
+      "light"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "ed7002b439e9ac845f22357d822bac1444730fbdb6016d3ec9432297b9ec9f73": {
+    "class_names": [
+      "content"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "285f493663cf4c6eb2f68f242d5d9cad9d1e6ef825cf024036a03c7ab3ad2051": {
+    "class_names": [
+      "template-x",
+      "horizontal",
+      "fullwidth"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "cdcdc322da29c7051424246cdb695f31f0dbc31e7fec257a7cbd11f0e4feaae2": {
+    "class_names": [
+      "section-metadata"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "ac7ae1a77f4c76ed2ba13ba0a5fcfd71aec2a9d625f43c7cab0912ea98697876": {
+    "class_names": [
+      "ckg-link-list"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "6b2bf44e613a59cf3c3da01188a4f81c0df8485f969adbe00d50f05e69e7d591": {
+    "class_names": [
+      "color-how-to-carousel-wrapper"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "711e2ffed3829a4bcd6cedfdf1aa644c8498125ec179bb9ae307b614f1239475": {
+    "class_names": [
+      "color-how-to-carousel",
+      "schema",
+      "light",
+      "shadow"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "860f90dbc075eeaab4ee838a29af104b47d5e001ecccc2228a1396b01ab3f078": {
+    "class_names": [
+      "ax-columns",
+      "color",
+      "width-2-columns",
+      "shadow"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "2cf850d6c8edad5d97e1946a2cc04088d7f60a77b71b763d896453eaddd29ae9": {
+    "class_names": [
+      "long-text-wrapper",
+      "plain"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "0dc603ac340f7f49a03113aed3c415b755f65e3b2b6cb9767f2b25d94943f8d9": {
+    "class_names": [
+      "long-text",
+      "plain"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "708afb4cb4fd76517b7f3cc4c1d58303f625369220f3d8b315a7b7744ad1fe61": {
+    "class_names": [
+      "banner",
+      "cool"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "b0a6f7cb84bbe4f811a3ef5ab103dbf0bf1a927c7a405c2485790d8a13b5b921": {
+    "class_names": [
+      "floating-button",
+      "block"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/pink",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/white",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://main--express-milo--adobecom.aem.live/express/colors/white"
+    ]
+  },
+  "6e24a69867af9412f90084c1a7546bbc3e291fb2ec1319cd1f0a5716e5c6feb9": {
+    "class_names": [
+      "hero-color",
+      "dark"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple"
+    ]
+  },
+  "1506a1ba466ee578dcfe4bbb54d15a943d529b3bbc177a4960106476956aaf2f": {
+    "class_names": [
+      "color-how-to-carousel",
+      "schema",
+      "dark"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple"
+    ]
+  },
+  "aa5cf41c991f847049da22939f665687e9ec418165084b268341fbbf2d0085e2": {
+    "class_names": [
+      "ax-columns",
+      "color",
+      "width-2-columns"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/black",
+      "https://main--express-milo--adobecom.aem.live/express/colors/purple",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://main--express-milo--adobecom.aem.live/express/colors/blue",
+      "https://stage--express-milo--adobecom.aem.live/express/colors/purple"
+    ]
+  }
+}

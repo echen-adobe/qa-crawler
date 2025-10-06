@@ -86,11 +86,15 @@ async def fetch_sitemap_urls(context, sitemap_url: str, timeout_ms: int = 60_000
         return []
 
     urls: list[str] = []
+    def is_supported(loc_value: str) -> bool:
+        return loc_value.startswith("https://www.adobe.com/") and "/express/" in loc_value
+
     try:
         soup = BeautifulSoup(text, "xml")
         for loc in soup.find_all("loc"):
             loc_text = (loc.text or "").strip()
-            if loc_text.startswith("https://www.adobe.com/express/"):
+            print(loc_text)
+            if is_supported(loc_text):
                 urls.append(loc_text)
     except Exception:
         urls = []
@@ -99,7 +103,7 @@ async def fetch_sitemap_urls(context, sitemap_url: str, timeout_ms: int = 60_000
         urls = [
             match.strip()
             for match in re.findall(r"<loc>\s*(.*?)\s*</loc>", text, flags=re.IGNORECASE)
-            if match.startswith("https://www.adobe.com/express/")
+            if is_supported(match)
         ]
 
     deduped: list[str] = []
@@ -123,27 +127,94 @@ async def get_urls_for_environment(urls: Iterable[str], environment: str) -> lis
     return environment_urls
 
 
-async def get_urls(context, sitemap_file: str | Path) -> tuple[list[str], list[str]]:
+def _collect_manual_urls(
+    config: Mapping[str, Any],
+    sitemap_path: str | Path,
+    seen: set[str],
+) -> tuple[list[str], dict[str, str], str]:
+    canonical_urls: list[str] = []
+    url_origins: dict[str, str] = {}
+
+    manual_label = f"manual entries from {Path(sitemap_path).name}"
+    raw_urls = config.get("urls", [])
+    if isinstance(raw_urls, str):
+        raw_urls = [raw_urls]
+    if isinstance(raw_urls, Iterable):
+        for candidate in raw_urls:
+            if not isinstance(candidate, str):
+                continue
+            trimmed = candidate.strip()
+            if not trimmed or trimmed in seen:
+                continue
+            seen.add(trimmed)
+            canonical_urls.append(trimmed)
+            url_origins[trimmed] = manual_label
+
+    return canonical_urls, url_origins, manual_label
+
+
+async def _collect_sitemap_urls(
+    context,
+    config: Mapping[str, Any],
+    sitemap_source: str,
+    seen: set[str],
+) -> tuple[list[str], dict[str, str]]:
+    canonical_urls: list[str] = []
+    url_origins: dict[str, str] = {}
+    sitemap_results = await fetch_sitemap_urls(context, sitemap_source)
+    for candidate in sitemap_results:
+        if candidate in seen:
+            continue
+        seen.add(candidate)
+        canonical_urls.append(candidate)
+        url_origins[candidate] = sitemap_source
+    return canonical_urls, url_origins
+
+
+async def _build_environment_urls(
+    config: Mapping[str, Any],
+    canonical_urls: Iterable[str],
+    url_origins: Mapping[str, str],
+) -> tuple[list[str], list[str], dict[str, str]]:
+    canonical_list = list(canonical_urls)
+    control_urls = await get_urls_for_environment(canonical_list, config["control_branch_host"])
+    experimental_urls = await get_urls_for_environment(canonical_list, config["experimental_branch_host"])
+
+    url_to_sitemap: dict[str, str] = {}
+    for base_url, control_url, experimental_url in zip(canonical_list, control_urls, experimental_urls):
+        origin = url_origins.get(base_url)
+        if origin is None:
+            origin = "manual entries"
+        url_to_sitemap[control_url] = origin
+        url_to_sitemap[experimental_url] = origin
+
+    return control_urls, experimental_urls, url_to_sitemap
+
+
+async def get_urls(context, sitemap_file: str | Path) -> tuple[list[str], list[str], dict[str, str]]:
     config = await load_config(sitemap_file)
-    urls = list(config.get("urls", []))
-    if not urls:
-        sources = resolve_sitemap_sources(config)
-        if sources:
-            sitemap_results = await asyncio.gather(
-                *(fetch_sitemap_urls(context, sitemap) for sitemap in sources)
-            )
-            seen: set[str] = set()
-            combined: list[str] = []
-            for result in sitemap_results:
-                for candidate in result:
-                    if candidate in seen:
-                        continue
-                    seen.add(candidate)
-                    combined.append(candidate)
-            urls = combined
-    control_urls = await get_urls_for_environment(urls, config["control_branch_host"])
-    experimental_urls = await get_urls_for_environment(urls, config["experimental_branch_host"])
-    return control_urls, experimental_urls
+    seen: set[str] = set()
+    manual_urls, manual_origins, manual_label = _collect_manual_urls(config, sitemap_file, seen)
+
+    sitemap_sources = resolve_sitemap_sources(config)
+    all_canonical = list(manual_urls)
+    all_origins = dict(manual_origins)
+
+    if sitemap_sources:
+        for source in sitemap_sources:
+            canonical_urls, url_origins = await _collect_sitemap_urls(context, config, source, seen)
+            all_canonical.extend(canonical_urls)
+            all_origins.update(url_origins)
+
+    if not all_canonical and sitemap_sources:
+        # If no canonical URLs were added (e.g., manual URLs filtered out), fall back to fetching all.
+        for source in sitemap_sources:
+            sitemap_results = await fetch_sitemap_urls(context, source)
+            for candidate in sitemap_results:
+                all_canonical.append(candidate)
+                all_origins.setdefault(candidate, source)
+
+    return await _build_environment_urls(config, all_canonical, all_origins)
 
 
 async def process_page_with_context(context, url: str, environment: str, loggers: dict[str, Logger]):
@@ -190,7 +261,13 @@ async def process_page_with_context(context, url: str, environment: str, loggers
         await page.close()
 
 
-async def run_crawl(sitemap_file: str | Path, *, batch_size: int = 10, limit: int = -1) -> None:
+async def run_crawl(
+    sitemap_file: str | Path,
+    *,
+    batch_size: int = 10,
+    limit: int = 5,
+    new_version: bool = False,
+) -> None:
     ensure_data_directories()
     async with async_playwright() as playwright:
         browser = await playwright.chromium.launch(
@@ -235,42 +312,102 @@ async def run_crawl(sitemap_file: str | Path, *, batch_size: int = 10, limit: in
         control_context = await browser.new_context(**context_options)
         experimental_context = await browser.new_context(**context_options)
 
-        control_urls, experimental_urls = await get_urls(control_context, sitemap_file)
-        total_urls = min(limit, len(control_urls)) if limit > 0 else len(control_urls)
-
-        loggers: dict[str, Logger] = {
-            "source": SourceLogger(),
-            "failure": FailureLogger(),
-        }
-        if DomLogger:
-            loggers["dom"] = DomLogger()
-
-        for logger in loggers.values():
-            if hasattr(logger, "initialize") and callable(logger.initialize):
-                await logger.initialize()  # type: ignore[attr-defined]
-
         try:
-            for index in range(0, total_urls, batch_size):
-                control_batch = control_urls[index : index + batch_size]
-                experimental_batch = experimental_urls[index : index + batch_size]
-                control_tasks = [process_page_with_context(control_context, url, "control", loggers) for url in control_batch]
-                experimental_tasks = [
-                    process_page_with_context(experimental_context, url, "experimental", loggers)
-                    for url in experimental_batch
-                ]
-                await asyncio.gather(*(control_tasks + experimental_tasks))
-                print(f"Completed batch {index // batch_size + 1}")
-                await asyncio.sleep(3)
+            config = await load_config(sitemap_file)
+            sitemap_sources = resolve_sitemap_sources(config)
+            seen: set[str] = set()
 
-            for logger in loggers.values():
-                if hasattr(logger, "write_logs_async") and callable(logger.write_logs_async):
-                    await logger.write_logs_async()  # type: ignore[attr-defined]
-                else:
-                    logger.write_logs()
+            manual_urls, manual_origins, manual_label = _collect_manual_urls(
+                config, sitemap_file, seen
+            )
 
-            for logger in loggers.values():
-                if hasattr(logger, "cleanup") and callable(logger.cleanup):
-                    await logger.cleanup()  # type: ignore[attr-defined]
+            url_groups: list[tuple[str, list[str], dict[str, str]]] = []
+            if manual_urls:
+                url_groups.append((manual_label, manual_urls, manual_origins))
+
+            for source in sitemap_sources:
+                canonical_urls, url_origins = await _collect_sitemap_urls(
+                    control_context, config, source, seen
+                )
+                url_groups.append((source, canonical_urls, url_origins))
+
+            if not url_groups:
+                print("No URLs found in configuration; nothing to crawl.")
+                return
+
+            iteration_limit: int | None = limit if limit > 0 else None
+
+            async def run_group(
+                label: str,
+                canonical_urls: list[str],
+                url_origins: dict[str, str],
+            ) -> None:
+
+                if not canonical_urls:
+                    print(f"No URLs discovered for {label}; skipping.")
+                    return
+
+                selected_canonical = canonical_urls
+                if iteration_limit is not None:
+                    selected_canonical = canonical_urls[:iteration_limit]
+
+                control_urls, experimental_urls, url_to_sitemap = await _build_environment_urls(
+                    config, selected_canonical, url_origins
+                )
+
+                if not control_urls:
+                    print(f"No environment URLs generated for {label}; skipping.")
+                    return
+
+                loggers: dict[str, Logger] = {
+                    "source": SourceLogger(new_version=new_version, url_to_sitemap=url_to_sitemap),
+                    "failure": FailureLogger(),
+                }
+                if DomLogger:
+                    loggers["dom"] = DomLogger()
+
+                for logger in loggers.values():
+                    if hasattr(logger, "initialize") and callable(logger.initialize):
+                        await logger.initialize()  # type: ignore[attr-defined]
+
+                total_urls = len(control_urls)
+                print(f"Starting crawl for {label} ({total_urls} URLs)")
+
+                for index in range(0, total_urls, batch_size):
+                    control_batch = control_urls[index : index + batch_size]
+                    experimental_batch = experimental_urls[index : index + batch_size]
+                    control_tasks = [
+                        process_page_with_context(control_context, url, "control", loggers)
+                        for url in control_batch
+                    ]
+                    experimental_tasks = [
+                        process_page_with_context(experimental_context, url, "experimental", loggers)
+                        for url in experimental_batch
+                    ]
+                    await asyncio.gather(*(control_tasks + experimental_tasks))
+                    print(
+                        f"Completed batch {index // batch_size + 1} for {label}"
+                    )
+                    await asyncio.sleep(3)
+
+                for logger in loggers.values():
+                    if hasattr(logger, "write_logs_async") and callable(logger.write_logs_async):
+                        await logger.write_logs_async()  # type: ignore[attr-defined]
+                    else:
+                        logger.write_logs()
+
+                for logger in loggers.values():
+                    cleanup_fn = getattr(logger, "cleanup", None)
+                    if callable(cleanup_fn):
+                        maybe_coro = cleanup_fn()
+                        if asyncio.iscoroutine(maybe_coro):  # type: ignore[truthy-function]
+                            await maybe_coro
+
+                print(f"Finished crawl for {label}")
+                return
+
+            for label, canonical_urls, url_origins in url_groups:
+                await run_group(label, canonical_urls, url_origins)
         finally:
             await control_context.close()
             await experimental_context.close()
@@ -285,6 +422,11 @@ def build_parser() -> argparse.ArgumentParser:
         default=str(SITEMAPS_DIR / "default_sitemap.json"),
         help="Path to the sitemap configuration file",
     )
+    parser.add_argument(
+        "--new-version",
+        action="store_true",
+        help="Enable the new block map output structure",
+    )
     return parser
 
 
@@ -292,7 +434,7 @@ def main(argv: Iterable[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(list(argv) if argv is not None else None)
     print(f"Starting crawler with sitemap: {args.sitemap}")
-    asyncio.run(run_crawl(args.sitemap))
+    asyncio.run(run_crawl(args.sitemap, new_version=args.new_version))
     return 0
 
 

@@ -1,0 +1,557 @@
+{
+  "3a413f3828d50a26f0533bca7d5189503ccc0952717610d0e249a6c6ba708f69": {
+    "class_names": [
+      "grid-marquee",
+      "ratings"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "cdcdc322da29c7051424246cdb695f31f0dbc31e7fec257a7cbd11f0e4feaae2": {
+    "class_names": [
+      "section-metadata"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "237eb7136f484f90639dd66587d5ebb8e2f979c051a9cadbe4e771fae39d58c8": {
+    "class_names": [
+      "wayfinder",
+      "gradient"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "e919b83b4f19046cc24d9ab0834c95c7508766887cb56e81d88d2fe6d0ccab6d": {
+    "class_names": [
+      "gen-ai-cards-wrapper",
+      "homepage"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "d78189b3ca542ac1d3ed93365c076ffa3aa195faf42434587bf06ecd428bfd90": {
+    "class_names": [
+      "gen-ai-cards",
+      "homepage"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "18bc6cd47a34f18038019df94f4839b85fb7d3aec45a80ef98018bb92137141f": {
+    "class_names": [
+      "discover-cards"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "2c520491a4d41eda81813adbb8b778e1121c052bcff0ee5e1ae7d5ed054fb026": {
+    "class_names": [
+      "quotes-wrapper"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "3ec78282be467c401fb673a10bf0fc0766a522d9c3db39fbf3cc90c2c00d8577": {
+    "class_names": [
+      "quotes",
+      "singular"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "6e2feb8dff2b9012ec981880c5432c4c196e54dcb3181f20fd333eb9df6f22af": {
+    "class_names": [
+      "text",
+      "max-width-10-desktop",
+      "center",
+      "xl-button",
+      "l-spacing-top",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "68668624db37ade2dd21fad233514f42b783ec415c1aad1bdcffe772b09d8a00": {
+    "class_names": [
+      "text",
+      "max-width-8-desktop",
+      "center",
+      "no-spacing-bottom",
+      "m-spacing-top",
+      "xl-button",
+      "l-title",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "c8d3b96c61fcd03f9c1ad15312a16cfa6aa156e42497d45359707433df7f1d34": {
+    "class_names": [
+      "text",
+      "max-width-8-desktop",
+      "center",
+      "l-spacing-bottom",
+      "xl-button",
+      "l-title",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "79cee5272f0fbb66412d94c6c61aa6ba7dad7a8ae938646e081f337524fc99a6": {
+    "class_names": [
+      "headline",
+      "pricing-page"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "3f3fc2b5a3f3c49080a14f00b394d11a6755955dbf65607b00e90973f219e242": {
+    "class_names": [
+      "content-toggle-wrapper"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "b0f7da3726a415295eed2e8d093008c7c78a944ec65352e062ea72058fc54a9e": {
+    "class_names": [
+      "content-toggle-v2",
+      "padding-20"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "c7bfaf05c72b806d47b091a40bf541179b175c15259e6a98134a9ceeabcca278": {
+    "class_names": [
+      "simplified-pricing-cards-v2-wrapper"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "5488e7f638d0560b8047630d8d7e00279d99489102449329bf6c2945c829a610": {
+    "class_names": [
+      "simplified-pricing-cards-v2",
+      "loaded"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "708afb4cb4fd76517b7f3cc4c1d58303f625369220f3d8b315a7b7744ad1fe61": {
+    "class_names": [
+      "banner",
+      "cool"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "776597e7d2c44f6bb888179e72efbef1867e696bd5a106b3c24a884cca9aff12": {
+    "class_names": [
+      "list-wrapper"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "a330395cc0a53ad1207736546afff4735940937564bbf75ce1edad40780d9139": {
+    "class_names": [
+      "list"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "b0a6f7cb84bbe4f811a3ef5ab103dbf0bf1a927c7a405c2485790d8a13b5b921": {
+    "class_names": [
+      "floating-button",
+      "block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/"
+    ]
+  },
+  "ed7002b439e9ac845f22357d822bac1444730fbdb6016d3ec9432297b9ec9f73": {
+    "class_names": [
+      "content"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/android",
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/affiliate",
+      "https://main--express-milo--adobecom.aem.live/jp/express/affiliate",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/android"
+    ]
+  },
+  "5bf6ddb39f9abba2411b40a70d5c0d0da6577b0353ccc4c03300279c9ddb689a": {
+    "class_names": [
+      "ax-marquee-wrapper"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "9d1edd5c7788d24f7d0323a82d3a34385d0d9b8b867ded9868fa034e14b0fbdb": {
+    "class_names": [
+      "ax-marquee",
+      "short",
+      "has-mobile-animation",
+      "has-desktop-animation",
+      "appear"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "e90403a70a5252b3c38a686887ff66b377d90f59c93107127e7c2a6eae6006e0": {
+    "class_names": [
+      "make-a-project-wrapper"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "fddc922eac804ebcddc701084da2260e588ae5e0b00373ad706f500833cb1418": {
+    "class_names": [
+      "make-a-project"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "bb2286ce5ffeb954e164e2ecbbed77807c3d7b31e8a553ff8bde162846248f9d": {
+    "class_names": [
+      "content-toggle"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "8db58cb489f22474cb8d89a82a898a511555067d84977fe6fa1b4584653ec2d3": {
+    "class_names": [
+      "ax-columns",
+      "width-2-columns"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "dba0d1b2f3e2dd1c4499b2d4abaa5b0d7c01e259588adeb299b312843365a2b1": {
+    "class_names": [
+      "icon-list-wrapper"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "3008cec24dec86a7fd2ab658875df2dc08ae43abab51d41ef908a0e29881f472": {
+    "class_names": [
+      "icon-list"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "81d8fb7be18446bd46faff67d2fc28ff00ef5b891db55edf4ea0447a9df5ad0c": {
+    "class_names": [
+      "template-list-wrapper"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "f2b07c31687c0c53925fb73b049c50b52afeeb666cf6201a03ed10d947cea438": {
+    "class_names": [
+      "template-list",
+      "horizontal"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "30de18cc4ea2bf4601b4d97e3dc591d762e5bf00400e320c319a1f03821c6257": {
+    "class_names": [
+      "faq"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "8c7ed2d9be59e21cf7cfc7da75c6c0cb7dd751f4a870f0f9236f0f35cbaf584e": {
+    "class_names": [
+      "banner"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/education/express/",
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business",
+      "https://main--express-milo--adobecom.aem.live/jp/education/express/"
+    ]
+  },
+  "fdb9b4c96e790a1d68e416b8ec531c4762c7a9294cbdef356c40e919d21d8152": {
+    "class_names": [
+      "ax-columns",
+      "top-center",
+      "top",
+      "center",
+      "width-3-columns"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/express/affiliate",
+      "https://main--express-milo--adobecom.aem.live/jp/express/affiliate"
+    ]
+  },
+  "983ec1a2b7915ce32ccd86260f5c157a9580c83828e0182e81d2785910ebe37f": {
+    "class_names": [
+      "ax-columns",
+      "top-center",
+      "top",
+      "center",
+      "width-2-columns"
+    ],
+    "urls": [
+      "https://stage--express-milo--adobecom.aem.live/jp/express/affiliate",
+      "https://main--express-milo--adobecom.aem.live/jp/express/affiliate"
+    ]
+  },
+  "81773e98ec8073dc41db00a198163a098684fc53e31e3767c35f5301bc8501b2": {
+    "class_names": [
+      "headline",
+      "business-hub"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "68a6ff0a4ce440c63191926624ff0ab0c20b70c56a5acff3e4208d6371492c31": {
+    "class_names": [
+      "text",
+      "center",
+      "xxs-spacing",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "8ecd58277c2768b579916d3f3d7bbf98ef92c5278cbe426251c3e3b32e3663e1": {
+    "class_names": [
+      "text",
+      "center",
+      "xl-button",
+      "xxs-spacing",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "28bc581db26874eccca29073c26122b1ba5670d8788735739c357ec814f35a59": {
+    "class_names": [
+      "ax-columns",
+      "top",
+      "width-3-columns"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "e4baf83fca649772cbd1ee20df46a8e6ebf6fcaac7474915cf954bca35405d8b": {
+    "class_names": [
+      "text",
+      "max-width-10-desktop",
+      "center",
+      "xl-button",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "c091e23c2b52bfaeb9b5d0c6456399cf1264d16100faa216489a5d425558ef1d": {
+    "class_names": [
+      "text",
+      "max-width-8-desktop",
+      "center",
+      "no-spacing",
+      "xl-button",
+      "l-title",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "2fd30d894563417339b8d66fb75d0b97ef6ae223f1f3311422e3fbac82dca978": {
+    "class_names": [
+      "text",
+      "center",
+      "l-spacing-top",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "9bdecb1599957f52281fd058ce40b92d165092f53cb91008b750f8166cd580b1": {
+    "class_names": [
+      "ax-columns",
+      "enterprise",
+      "width-3-columns"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "f0f6a2194eb40872a4960f0e347f48f63fb8d944dbe9826a3a6efe8fdca21349": {
+    "class_names": [
+      "text",
+      "center",
+      "l-spacing",
+      "xl-spacing-bottom",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "cdeb0cfe63208920223e1e4c1b862c734196722a3181bda75803df8e6b9d4e6b": {
+    "class_names": [
+      "logo-row",
+      "block-layout",
+      "numerous"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "412bfd69c93a6978edcfa9b8b1c5e9d831f772f35ff5e6ab92f39d9b144dc4f7": {
+    "class_names": [
+      "text",
+      "center",
+      "m-spacing",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "d150fc0966eec11a9b5a6a0a7896b07fadd6f7aa30e87e3d8069f345375ff23e": {
+    "class_names": [
+      "simplified-pricing-cards-wrapper"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "96f7fe589297c03d48f3dc740ca4479e6b38a7ac5ab24196c55c7dd89cf052a4": {
+    "class_names": [
+      "simplified-pricing-cards",
+      "wide",
+      "default-expanded-2"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  },
+  "22de983a345da4a6f1d667c7c7ebceded3f3a04f7b8162d9d0be22f059d043ba": {
+    "class_names": [
+      "text",
+      "center",
+      "xxl-spacing",
+      "text-block",
+      "con-block"
+    ],
+    "urls": [
+      "https://main--express-milo--adobecom.aem.live/jp/express/business",
+      "https://stage--express-milo--adobecom.aem.live/jp/express/business"
+    ]
+  }
+}

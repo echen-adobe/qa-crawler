@@ -1,13 +1,13 @@
 playwright
 beautifulsoup4
 python-dotenv
-asyncio
-flask
-openai
 requests
+httpx
+flask
 flask-cors
 dirtyjson
 imagehash
 rapidfuzz
-google-cloud-storage
 boto3
+httpx
+fastapi

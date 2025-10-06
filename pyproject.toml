@@ -12,12 +12,15 @@ dependencies = [
   "beautifulsoup4",
   "python-dotenv",
   "requests",
+  "httpx",
   "flask",
   "flask-cors",
   "dirtyjson",
   "imagehash",
   "rapidfuzz",
   "boto3",
+  "httpx",
+  "fastapi",
 ]
 
 [project.scripts]
@@ -26,4 +29,7 @@ block-map-search = "qa_crawler.cli.search:main"
 block-map-sync = "qa_crawler.cli.sync:main"
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = {"" = "qa-crawler/crawler/src"}
+
+[tool.setuptools.packages.find]
+where = ["qa-crawler/crawler/src"]

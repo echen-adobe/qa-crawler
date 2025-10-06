@@ -1,0 +1,4 @@
+[console_scripts]
+block-map-search = qa_crawler.cli.search:main
+block-map-sync = qa_crawler.cli.sync:main
+qa-crawler = qa_crawler.cli.crawl:main

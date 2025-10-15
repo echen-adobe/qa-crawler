@@ -136,8 +136,8 @@ async def process_page_with_context(context, url: str, environment: str, loggers
         # }
         # """, timeout=15000)
 
-        for logger in loggers.values():
-            await logger.log(page, url, environment)
+        # for logger in loggers.values():
+        #     await logger.log(page, url, environment)
     except PlaywrightTimeoutError as exc:
         if "failure" in loggers:
             await loggers["failure"].log(
@@ -153,6 +153,8 @@ async def process_page_with_context(context, url: str, environment: str, loggers
             stack_trace = traceback.format_exc()
             await loggers["failure"].log(page, url, environment, error=exc, stack_trace=stack_trace)
     finally:
+        for logger in loggers.values():
+            await logger.log(page, url, environment)
         await page.close()
 
 

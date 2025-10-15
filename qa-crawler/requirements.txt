@@ -3,10 +3,8 @@ beautifulsoup4
 python-dotenv
 asyncio
 flask
-openai
 requests
 flask-cors
-dirtyjson
 imagehash
 rapidfuzz
 boto3

@@ -18,7 +18,7 @@ if __package__ is None or __package__ == "":  # pragma: no cover - script execut
 
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
-from playwright.async_api import async_playwright
+from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeoutError
 
 from qa_crawler.config import (
     CONTROL_SCREENSHOT_DIR,
@@ -138,6 +138,14 @@ async def process_page_with_context(context, url: str, environment: str, loggers
 
         for logger in loggers.values():
             await logger.log(page, url, environment)
+    except PlaywrightTimeoutError as exc:
+        if "failure" in loggers:
+            await loggers["failure"].log(
+                page,
+                url,
+                environment,
+                error=f"Timeout waiting for page readiness: {exc}",
+            )
     except Exception as exc:
         if "failure" in loggers:
             import traceback

@@ -189,7 +189,7 @@ async def run_crawl(
     sitemap_file: str | Path,
     *,
     batch_size: int = 10,
-    limit: int = 2,
+    limit: int = -1,
     page_timeout: float = 180.0,
 ) -> None:
     ensure_data_directories()

@@ -9,6 +9,5 @@ flask-cors
 dirtyjson
 imagehash
 rapidfuzz
-google-cloud-storage
 boto3
 bs4

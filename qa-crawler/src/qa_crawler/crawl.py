@@ -105,12 +105,13 @@ async def get_urls(context, sitemap_file: str | Path) -> tuple[list[str], list[s
 
 
 async def process_page_with_context(context, url: str, environment: str, loggers: dict[str, Logger]):
-    page = await context.new_page()
-    await page.evaluate("document.documentElement.style.setProperty('--animation-speed', '0s')")
-    await page.evaluate("document.documentElement.style.setProperty('transition', 'none')")
-    await asyncio.sleep(random.randint(1, 5) / 10.0)
-
+    page = None
     try:
+        page = await context.new_page()
+        await page.evaluate("document.documentElement.style.setProperty('--animation-speed', '0s')")
+        await page.evaluate("document.documentElement.style.setProperty('transition', 'none')")
+        await asyncio.sleep(random.randint(1, 5) / 10.0)
+
         for logger in loggers.values():
             await logger.init_on_page(page, url)
 
@@ -126,7 +127,7 @@ async def process_page_with_context(context, url: str, environment: str, loggers
             nav_url = url + ("&martech=off" if ("?" in url) else "?martech=off")
 
         await page.goto(nav_url, wait_until="domcontentloaded", timeout=60_000)
-        await asyncio.sleep(random.randint(1, 5)) 
+        await asyncio.sleep(random.randint(1, 5))
         await page.wait_for_selector("body", state="attached", timeout=45000)
         # await page.wait_for_function("""
         # () => {
@@ -135,9 +136,6 @@ async def process_page_with_context(context, url: str, environment: str, loggers
         #     return s && s.visibility !== 'hidden' && s.display !== 'none';
         # }
         # """, timeout=15000)
-
-        # for logger in loggers.values():
-        #     await logger.log(page, url, environment)
     except PlaywrightTimeoutError as exc:
         if "failure" in loggers:
             await loggers["failure"].log(
@@ -146,6 +144,8 @@ async def process_page_with_context(context, url: str, environment: str, loggers
                 environment,
                 error=f"Timeout waiting for page readiness: {exc}",
             )
+    except asyncio.CancelledError:
+        raise
     except Exception as exc:
         if "failure" in loggers:
             import traceback
@@ -153,12 +153,52 @@ async def process_page_with_context(context, url: str, environment: str, loggers
             stack_trace = traceback.format_exc()
             await loggers["failure"].log(page, url, environment, error=exc, stack_trace=stack_trace)
     finally:
-        for logger in loggers.values():
-            await logger.log(page, url, environment)
-        await page.close()
+        if page is not None:
+            for logger in loggers.values():
+                try:
+                    await logger.log(page, url, environment)
+                except Exception as log_exc:
+                    print(f"Logger {logger.__class__.__name__} failed for {url}: {log_exc}")
+            try:
+                await asyncio.shield(page.close())
+            except Exception as close_exc:
+                print(f"Failed to close page for {url}: {close_exc}")
 
 
-async def run_crawl(sitemap_file: str | Path, *, batch_size: int = 10, limit: int = -1) -> None:
+async def run_page_with_timeout(
+    context,
+    url: str,
+    environment: str,
+    loggers: dict[str, Logger],
+    timeout_seconds: float | None,
+) -> None:
+    if timeout_seconds is None or timeout_seconds <= 0:
+        await process_page_with_context(context, url, environment, loggers)
+        return
+
+    try:
+        await asyncio.wait_for(
+            process_page_with_context(context, url, environment, loggers),
+            timeout=timeout_seconds,
+        )
+    except asyncio.TimeoutError:
+        if "failure" in loggers:
+            await loggers["failure"].log(
+                None,
+                url,
+                environment,
+                error=f"Timed out after {timeout_seconds} seconds",
+            )
+        print(f"Timed out processing {url} ({environment}) after {timeout_seconds}s")
+
+
+async def run_crawl(
+    sitemap_file: str | Path,
+    *,
+    batch_size: int = 10,
+    limit: int = -1,
+    page_timeout: float = 180.0,
+) -> None:
     ensure_data_directories()
     async with async_playwright() as playwright:
         browser = await playwright.chromium.launch(
@@ -221,9 +261,12 @@ async def run_crawl(sitemap_file: str | Path, *, batch_size: int = 10, limit: in
             for index in range(0, total_urls, batch_size):
                 control_batch = control_urls[index : index + batch_size]
                 experimental_batch = experimental_urls[index : index + batch_size]
-                control_tasks = [process_page_with_context(control_context, url, "control", loggers) for url in control_batch]
+                control_tasks = [
+                    run_page_with_timeout(control_context, url, "control", loggers, page_timeout)
+                    for url in control_batch
+                ]
                 experimental_tasks = [
-                    process_page_with_context(experimental_context, url, "experimental", loggers)
+                    run_page_with_timeout(experimental_context, url, "experimental", loggers, page_timeout)
                     for url in experimental_batch
                 ]
                 await asyncio.gather(*(control_tasks + experimental_tasks))

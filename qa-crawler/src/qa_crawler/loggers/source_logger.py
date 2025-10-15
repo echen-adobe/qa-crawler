@@ -30,7 +30,16 @@ class SourceLogger(Logger):
         page.on("response", lambda response: self._filter_source_files(response.request.url, self.source_dict[url]))
 
     async def log(self, page, url, environment):
-        html_content = await page.content()
+        if page.is_closed():
+            print(f"Skipping DOM snapshot for {url}: page already closed")
+            return
+
+        try:
+            html_content = await page.content()
+        except Exception as exc:
+            print(f"Unable to capture DOM snapshot for {url}: {exc}")
+            return
+
         self.pending_snapshots.add(url)
         self.executor.submit(self._write_snapshot_threaded, url, html_content)
 

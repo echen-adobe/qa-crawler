@@ -128,13 +128,13 @@ async def process_page_with_context(context, url: str, environment: str, loggers
         await page.goto(nav_url, wait_until="domcontentloaded", timeout=60_000)
         await asyncio.sleep(random.randint(1, 5)) 
         await page.wait_for_selector("body", state="attached", timeout=45000)
-        await page.wait_for_function("""
-        () => {
-            const b = document.body;
-            const s = b && getComputedStyle(b);
-            return s && s.visibility !== 'hidden' && s.display !== 'none';
-        }
-        """, timeout=15000)
+        # await page.wait_for_function("""
+        # () => {
+        #     const b = document.body;
+        #     const s = b && getComputedStyle(b);
+        #     return s && s.visibility !== 'hidden' && s.display !== 'none';
+        # }
+        # """, timeout=15000)
 
         for logger in loggers.values():
             await logger.log(page, url, environment)

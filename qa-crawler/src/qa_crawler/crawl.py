@@ -129,13 +129,6 @@ async def process_page_with_context(context, url: str, environment: str, loggers
         await page.goto(nav_url, wait_until="domcontentloaded", timeout=60_000)
         await asyncio.sleep(random.randint(1, 5))
         await page.wait_for_selector("body", state="attached", timeout=45000)
-        # await page.wait_for_function("""
-        # () => {
-        #     const b = document.body;
-        #     const s = b && getComputedStyle(b);
-        #     return s && s.visibility !== 'hidden' && s.display !== 'none';
-        # }
-        # """, timeout=15000)
     except PlaywrightTimeoutError as exc:
         if "failure" in loggers:
             await loggers["failure"].log(
@@ -196,7 +189,7 @@ async def run_crawl(
     sitemap_file: str | Path,
     *,
     batch_size: int = 10,
-    limit: int = -1,
+    limit: int = 2,
     page_timeout: float = 180.0,
 ) -> None:
     ensure_data_directories()

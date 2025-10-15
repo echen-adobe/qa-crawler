@@ -131,7 +131,6 @@ class SourceLogger(Logger):
             if not main_element:
                 print(f"No main element found in {snapshot_path}")
                 return
-            print(main_element)
             section_elements = main_element.find_all(class_='section', recursive=True)
             for section in section_elements:
                 direct_children = section.find_all(recursive=False)
